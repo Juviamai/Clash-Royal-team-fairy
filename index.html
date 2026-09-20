@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Clash Royal · Fairy Tail Edition 妖精的尾巴版</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:#0b1220;color:#e8eef7;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  img{display:inline-block}
+
+  /* ================= START SCREEN — cute anime team battle ================= */
+  .poster{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;padding:40px 14px 120px}
+  .poster .bg{position:absolute;inset:-4%;background:center 24%/cover no-repeat;
+    filter:saturate(1.08) brightness(.92);animation:kb 26s ease-in-out infinite alternate;z-index:0}
+  @keyframes kb{from{transform:scale(1) translateY(0)}to{transform:scale(1.06) translateY(-1.6%)}}
+  .poster .veil{position:absolute;inset:0;z-index:1;
+    background:
+      radial-gradient(1200px 700px at 50% 30%,transparent 30%,rgba(8,12,26,.55) 100%),
+      linear-gradient(180deg,rgba(10,14,28,.66) 0%,rgba(10,14,28,.18) 34%,rgba(10,14,28,.30) 62%,#0b1220 100%)}
+  .rays{position:absolute;inset:-20%;z-index:1;opacity:.5;pointer-events:none;mix-blend-mode:screen;
+    background:conic-gradient(from 200deg at 50% 18%,transparent 0 8%,rgba(255,214,140,.10) 10%,transparent 13%,
+      transparent 30%,rgba(150,200,255,.09) 33%,transparent 36%,transparent 60%,rgba(255,214,140,.08) 63%,transparent 66%);
+    animation:spin 60s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  #pfx{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+
+  /* ---- team medallions ---- */
+  .team{position:absolute;top:50%;z-index:3;display:flex;flex-direction:column;gap:14px;align-items:center}
+  .team.left{left:3vw;transform:translateY(-52%)}
+  .team.right{right:3vw;transform:translateY(-52%)}
+  .tlabel{font-size:11px;font-weight:900;letter-spacing:3px;padding:4px 12px;border-radius:20px;
+    background:#0d1830cc;border:1px solid #ffffff2e;backdrop-filter:blur(3px)}
+  .team.left .tlabel{color:#9fd0ff}
+  .team.right .tlabel{color:#ffb0a0}
+  .medal{position:relative;border-radius:50%;background:#0d1830;border:3px solid;
+    box-shadow:0 10px 26px #000a,0 0 18px #4a7dd855;overflow:hidden;animation:floaty 4.6s ease-in-out infinite}
+  .medal img{width:100%;height:100%;display:block}
+  .team.left .medal{border-color:#5f9fe8;transform:scaleX(1)}
+  .team.right .medal{border-color:#e07862}
+  .team.right .medal img{transform:scaleX(-1)}
+  .medal.big{width:min(150px,17vw);height:min(150px,17vw);border-width:4px;
+    box-shadow:0 14px 34px #000b,0 0 30px #ffd70066,0 0 60px #4a7dd844}
+  .medal.big::after{content:"★";position:absolute;top:4px;left:8px;color:#ffd700;font-size:14px;
+    text-shadow:0 0 8px #ffd700aa;animation:twinkle 2.2s ease-in-out infinite}
+  .medal.sm{width:min(88px,10vw);height:min(88px,10vw);animation-delay:-1.6s}
+  .medal.sm:nth-child(3){animation-delay:-3s}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  @keyframes twinkle{0%,100%{opacity:.5}50%{opacity:1}}
+  .vsglint{position:absolute;left:50%;top:26%;transform:translateX(-50%);z-index:2;
+    font-size:clamp(30px,5vw,46px);font-weight:900;font-style:italic;letter-spacing:2px;
+    color:#ffe9a0;text-shadow:0 0 24px #ffd700cc,0 4px 14px #000;opacity:.9;animation:vs 3s ease-in-out infinite}
+  @keyframes vs{0%,100%{opacity:.55;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.08)}}
+
+  /* ---- center stack ---- */
+  .pcenter{position:relative;z-index:5;max-width:660px;text-align:center}
+  .crown{font-size:38px;filter:drop-shadow(0 6px 18px #ffd70088)}
+  .kicker{font-size:13px;letter-spacing:7px;color:#ffe9b8;font-weight:bold;text-shadow:0 0 16px #ff9838;margin-bottom:6px}
+  h1{font-size:clamp(42px,8.5vw,80px);margin:4px 0 8px;letter-spacing:4px;font-weight:900;line-height:1.02;
+    background:linear-gradient(180deg,#fff8dc 0%,#ffd700 55%,#ff9838 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 10px 30px #ff983866)}
+  .tagline{font-size:clamp(13px,2.3vw,18px);color:#f4ecd8;margin-bottom:30px;text-shadow:0 2px 10px #000c}
+  .play{display:inline-block;padding:17px 64px;font-size:21px;font-weight:900;border-radius:46px;cursor:pointer;
+    font-family:inherit;letter-spacing:3px;border:none;position:relative;
+    background:linear-gradient(135deg,#ffe07a,#ff9838 60%,#ff7a3d);color:#241300;
+    box-shadow:0 10px 34px #ff983877,0 0 0 3px #ffffff2e,inset 0 2px 0 #fff8;
+    transition:transform .16s,box-shadow .16s;animation:pulse 2.6s ease-in-out infinite}
+  .play:hover{transform:translateY(-4px) scale(1.04);box-shadow:0 16px 46px #ff9838aa,0 0 30px #ffd70066,0 0 0 3px #ffffff40,inset 0 2px 0 #fff8}
+  .play:active{transform:translateY(-1px) scale(.97)}
+  @keyframes pulse{0%,100%{box-shadow:0 10px 34px #ff983866,0 0 0 3px #ffffff2e}
+    50%{box-shadow:0 10px 44px #ff9838aa,0 0 26px #ffd70055,0 0 0 3px #ffffff2e}}
+  .nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  .nbtn{padding:12px 26px;font-size:14.5px;font-weight:bold;font-family:inherit;border-radius:36px;cursor:pointer;
+    border:2px solid #ffffff30;background:#0d1830d9;color:#f0f4ff;backdrop-filter:blur(5px);
+    transition:transform .15s,border-color .15s,box-shadow .15s}
+  .nbtn:hover{transform:translateY(-3px);border-color:#ffd700;box-shadow:0 8px 24px #0008}
+  .meta{margin-top:24px;font-size:12.5px;color:#d8cdb4;text-shadow:0 2px 8px #000b}
+
+  /* ================= SECTIONS ================= */
+  section{max-width:1040px;margin:0 auto;padding:56px 20px}
+  h2{font-size:28px;text-align:center;margin-bottom:8px;letter-spacing:1px}
+  .sub{text-align:center;color:#8ba0c6;margin-bottom:32px;font-size:15px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px}
+  .card{position:relative;background:linear-gradient(165deg,#182742,#0d1728);border:1px solid #2c4a78;
+    border-radius:16px;padding:16px;transition:transform .16s,border-color .16s,box-shadow .16s}
+  .card:hover{transform:translateY(-5px);border-color:#ffd70088;box-shadow:0 14px 34px #0009}
+  .card img{width:78px;height:78px;border-radius:50%;border:3px solid #ffffff26;object-fit:cover;
+    box-shadow:0 6px 18px #0008,0 0 16px #4a7dd844}
+  .card .nm{font-size:16.5px;font-weight:bold;margin:10px 0 2px}
+  .card .sp{font-size:12px;color:#9fd8ff;font-style:italic;margin-bottom:6px}
+  .card .ds{font-size:13px;color:#9fb4d8;line-height:1.65}
+  .card .cost{position:absolute;top:12px;right:12px;color:#d98af5;font-weight:bold;font-size:14px}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .step{background:linear-gradient(165deg,#182742,#0d1728);border:1px solid #2c4a78;border-radius:14px;
+    padding:20px;border-left:3px solid #ffd700}
+  .step b{display:block;font-size:16px;margin:6px 0}
+  .step p{font-size:13px;color:#9fb4d8;line-height:1.75}
+  .step .n{color:#ffd700;font-weight:bold;font-size:12px;letter-spacing:2px}
+  .feat{display:flex;gap:12px;align-items:flex-start;padding:15px 18px;font-size:14px;color:#c6d5ec;line-height:1.75;
+    background:#101a2c;border:1px solid #1f3355;border-radius:12px}
+  .feat span{font-size:22px}
+  .cta{text-align:center;padding:70px 20px 96px;position:relative;overflow:hidden;
+    background:radial-gradient(ellipse at 50% 130%,#2a4a8a 0%,#0b1220 62%)}
+  .cta .play{animation:none}
+  .cta p{color:#9fb4d8;margin-bottom:26px;font-size:15px}
+  footer{text-align:center;padding:26px;color:#5d729a;font-size:13px;border-top:1px solid #1c2c45}
+  footer a:hover{color:#ffd700}
+
+  @media (max-width:900px){
+    .team{gap:8px}
+    .medal.big{width:15vw;height:15vw}
+    .medal.sm{width:9vw;height:9vw}
+    .team.left{left:1vw}.team.right{right:1vw}
+  }
+  @media (max-width:640px){
+    .poster{padding-top:52px}
+    .team{top:auto;bottom:6vh;transform:none;flex-direction:row;gap:6px}
+    .team.left{left:2vw}.team.right{right:2vw}
+    .tlabel{display:none}
+    .medal.big{width:19vw;height:19vw}
+    .medal.sm{width:12vw;height:12vw}
+    .vsglint{top:64%}
+    .nav{gap:8px}.nbtn{padding:10px 18px;font-size:13px}
+    .play{padding:15px 44px;font-size:18px}
+  }
+  @media (max-width:420px){
+    .cards{grid-template-columns:repeat(auto-fit,minmax(158px,1fr))}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= START SCREEN ================= -->
+<div class="poster">
+  <div class="bg"></div>
+  <div class="veil"></div>
+  <div class="rays"></div>
+  <canvas id="pfx"></canvas>
+
+  <div class="team left">
+    <span class="tlabel" data-i18n="teamYou">YOUR TEAM</span>
+    <div class="medal big"><img src="assets/p_juvia.png" alt="Juvia"></div>
+    <div class="medal sm"><img src="assets/p_erza.png" alt="Erza"></div>
+    <div class="medal sm"><img src="assets/p_lucy.png" alt="Lucy"></div>
+  </div>
+  <div class="team right">
+    <span class="tlabel" data-i18n="teamRival">RIVAL TEAM</span>
+    <div class="medal big"><img src="assets/p_gray.png" alt="Gray"></div>
+    <div class="medal sm"><img src="assets/p_makarov.png" alt="Makarov"></div>
+    <div class="medal sm"><img src="assets/p_natsu.png" alt="Natsu"></div>
+  </div>
+  <div class="vsglint">VS</div>
+
+  <div class="pcenter">
+    <div class="crown">👑</div>
+    <div class="kicker" data-i18n="kicker">FAIRY TAIL EDITION</div>
+    <h1 data-i18n="title">CLASH ROYAL</h1>
+    <div class="tagline" data-i18n="tagline">Water &amp; Ice lead an 8-card Fairy Tail deck · Real-time battle vs AI</div>
+    <button class="play" id="btnPlay">⚔️ <span data-i18n="play">START</span></button>
+    <nav class="nav">
+      <button class="nbtn" id="btnCards">🃏 <span data-i18n="cardsBtn">CARDS</span></button>
+      <button class="nbtn" id="btnHow">📖 <span data-i18n="howBtn">GUIDANCE</span></button>
+      <button class="nbtn" id="btnTheme"><span id="themeIco">☀️</span> <span data-i18n="changeBf">BATTLEFIELD</span></button>
+      <button class="nbtn" id="btnLang">🌐 <span id="langLabel">中文</span></button>
+    </nav>
+    <div class="meta" data-i18n="meta">⏱ 3-minute matches · 💧 Elixir system · 🌉 Two lanes &amp; bridges · Zero dependencies, play in your browser</div>
+  </div>
+</div>
+
+<section id="pool">
+  <h2 data-i18n="poolTitle">🃏 Fairy Tail Deck · 8 Cards</h2>
+  <div class="sub" data-i18n="poolSub">Cycle a 4-card hand — every card shows its cost, role and signature magic</div>
+  <div class="cards" id="cardGrid"></div>
+</section>
+
+<section id="howto">
+  <h2 data-i18n="howTitle">🎮 Quick Start</h2>
+  <div class="sub" data-i18n="howSub">Tap a card → tap your half to deploy. Destroy the enemy King Tower to win!</div>
+  <div class="steps" id="stepGrid"></div>
+</section>
+
+<section>
+  <h2 data-i18n="featTitle">✨ Features</h2>
+  <div class="sub" data-i18n="featSub">Vanilla JavaScript + Canvas · Fairy Tail cast · No frameworks, no install</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px" id="featGrid"></div>
+</section>
+
+<div class="cta">
+  <a class="play" href="game.html">▶ <span data-i18n="play">START</span></a>
+  <p data-i18n="ctaP">Free · No install · Play instantly</p>
+</div>
+
+<footer>
+  <a href="https://github.com/AlghaPorthos/clash_royal" target="_blank">GitHub · AlghaPorthos/clash_royal</a>
+  · <span data-i18n="madeWith">Made with Canvas and ❤️</span>
+</footer>
+
+<script src="js/i18n.js?v=3"></script>
+<script src="js/assets.js?v=3"></script>
+<script src="js/chars.js?v=3"></script>
+<script src="js/themes.js?v=3"></script>
+<script>
+/* resolve embedded images (falls back to assets/ files when ASSETS is absent) */
+(function(){
+ const BG='assets/poster_guild.jpg';
+ document.querySelector('.poster .bg').style.backgroundImage=
+  'url("'+((window.ASSETS&&ASSETS[BG])||BG)+'")';
+ document.querySelectorAll('.medal img').forEach(function(im){
+  const k=im.getAttribute('src');
+  if(window.ASSETS&&ASSETS[k])im.src=ASSETS[k];
+ });
+})();
+</script>
+<script>
+/* ===== floating particles + sparkles (colours follow the battlefield theme) ===== */
+(function(){
+ const fx=document.getElementById('pfx'),fg=fx.getContext('2d');
+ let motes=[];
+ function size(){
+  fx.width=fx.clientWidth;fx.height=fx.clientHeight;
+  const P=(CRTHEMES.PAL[CRTHEMES.get()]||CRTHEMES.PAL.summer).pfx;
+  motes=[];for(let i=0;i<52;i++)motes.push({x:Math.random()*fx.width,y:Math.random()*fx.height,
+   r:.8+Math.random()*2.6,vy:-.16-Math.random()*.5,vx:(Math.random()-.5)*.3,
+   c:Math.random()<.5?P[0]:(Math.random()<.5?P[1]:'rgba(255,255,255,'),
+   a:.2+Math.random()*.5,ph:Math.random()*7,star:Math.random()<.18});}
+ size();addEventListener('resize',size);
+ addEventListener('crtheme',()=>{
+  size();
+  document.getElementById('themeIco').textContent=(CRTHEMES.PAL[CRTHEMES.get()]||{}).icon||'☀️';
+ });
+ (function loop(){
+  fg.clearRect(0,0,fx.width,fx.height);
+  const now=performance.now();
+  motes.forEach(m=>{
+   m.y+=m.vy;m.x+=m.vx+Math.sin(now/1000+m.ph)*.3;
+   if(m.y<-8){m.y=fx.height+8;m.x=Math.random()*fx.width;}
+   const tw=m.a*(0.55+0.45*Math.sin(now/520+m.ph));
+   if(m.star){ // 4-point sparkle
+    fg.fillStyle=m.c+tw+')';fg.beginPath();
+    for(let i=0;i<8;i++){const a=i*Math.PI/4,r=(i%2===0)?m.r*2.2:m.r*.7;
+     fg[i?'lineTo':'moveTo'](m.x+Math.cos(a)*r,m.y+Math.sin(a)*r);}
+    fg.closePath();fg.fill();
+   }else{
+    fg.fillStyle=m.c+tw+')';fg.beginPath();fg.arc(m.x,m.y,m.r,0,7);fg.fill();
+   }
+  });
+  requestAnimationFrame(loop);
+ })();
+})();
+
+/* ===== dynamic sections (i18n + Fairy Tail cast) ===== */
+const COSTS={knight:3,archers:3,giant:5,minipekka:4,musketeer:4,skeletons:2,cannon:3,fireball:4};
+function renderAll(){
+ const lang=CRI18N.lang();
+ document.getElementById('cardGrid').innerHTML=CRCHARS.DECK_ORDER.map(k=>{
+  const d=CRCHARS.FT[k];
+  return `<div class="card"><span class="cost">💧${COSTS[k]}</span>`+
+   `<img src="${d.img}" alt="${d.name[lang]}">`+
+   `<div class="nm">${d.name[lang]}</div><div class="sp">${d.spell[lang]}</div>`+
+   `<div class="ds">${d.role[lang]}</div></div>`;
+ }).join('');
+ document.getElementById('stepGrid').innerHTML=CRI18N.t('steps').map(s=>
+  `<div class="step"><span class="n">${s.n}</span><b>${s.b}</b><p>${s.p}</p></div>`).join('');
+ document.getElementById('featGrid').innerHTML=CRI18N.t('feats').map(f=>
+  `<div class="feat"><span>${f.ic}</span><div>${f.p}</div></div>`).join('');
+}
+/* ===== nav + language ===== */
+document.getElementById('btnPlay').onclick=()=>{location.href='game.html';};
+document.getElementById('btnCards').onclick=()=>document.getElementById('pool').scrollIntoView({behavior:'smooth'});
+document.getElementById('btnHow').onclick=()=>{location.href='guidance.html';};
+document.getElementById('btnTheme').onclick=()=>CRTHEMES.openModal();
+document.getElementById('btnLang').onclick=()=>CRI18N.toggle();
+document.getElementById('themeIco').textContent=(CRTHEMES.PAL[CRTHEMES.get()]||{}).icon||'☀️';
+function refreshLangUI(){
+ document.getElementById('langLabel').textContent=CRI18N.lang()==='en'?'中文':'English';
+ renderAll();
+ document.title=CRI18N.lang()==='zh'?'皇室战争 · 妖精的尾巴版':'Clash Royal · Fairy Tail Edition';
+}
+addEventListener('crlang',refreshLangUI);
+CRI18N.apply();
+refreshLangUI();
+</script>
+</body>
+</html>
